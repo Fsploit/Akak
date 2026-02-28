@@ -1,12 +1,13 @@
 export default function handler(req, res) {
+    // 1. Capture the exact start time
+    const startTime = performance.now();
+
     try {
         const hosted = req.query.hosted;
         const userAgent = req.headers['user-agent'] || '';
         
-        // Headers used by almost all Roblox executors
         const isRoblox = userAgent.includes("Roblox") || req.headers['roblox-id'];
-
-        // The HTML and CSS for your custom "700" error page
+        
         const customErrorHTML = `
         <!DOCTYPE html>
         <html lang="en">
@@ -42,10 +43,9 @@ export default function handler(req, res) {
                 .error-code {
                     font-size: 18rem;
                     font-weight: bold;
-                    color: #d9b3b3; /* Dusty rose color matching your image */
+                    color: #d9b3b3;
                     margin: 0;
                     line-height: 1;
-                    /* Simulates the 3D block shadow effect from the image */
                     text-shadow: 
                         5px 5px 0px #f0f0f0, 
                         10px 10px 0px #e0e0e0;
@@ -60,24 +60,37 @@ export default function handler(req, res) {
         </html>
         `;
 
-        // 1. Key Authentication
+        // 2. Security Checks
         if (hosted !== "bee54fbc56a2a65809c4519b3816cff770e45d072d4dd53e1675f865beb9f6d7") {
             return res.status(403).send("malformed link or file api changed err. 200");
         }
-
-        // 2. The "Hide" Logic
-        // If the key is CORRECT but the request is NOT from Roblox, serve the HTML page.
+        
         if (!isRoblox) {
             res.setHeader("Content-Type", "text/html");
-            // We use 403 under the hood so the server doesn't crash, but show 700 visually.
-            return res.status(403).send(customErrorHTML); 
+            return res.status(403).send(customErrorHTML);
         }
 
-        // 3. Serve the Script (Only reached if Key is correct AND request is from Roblox)
-        res.setHeader("Content-Type", "text/plain");
-        return res.status(200).send(`print("hi")`);
+        // 3. Serve the Lua Script (Since it IS Roblox)
+        
+        // Put your actual Luraph obfuscated script content here
+        const luaScriptContent = `-- Your obfuscated LURAPH code here`; 
 
-    } catch (err) {
-        return res.status(500).send("Server Error");
+        // 4. Calculate the end time and format the difference to 2 decimal places
+        const endTime = performance.now();
+        const timeTaken = (endTime - startTime).toFixed(2);
+        
+        // Create the warning string exactly as requested
+        const timingWarning = `warn("time took loaded script: ${timeTaken}ms")\n`;
+        
+        // Combine the warning with the script content
+        const finalScript = timingWarning + luaScriptContent;
+
+        // 5. Send the final compiled string back to Roblox
+        res.setHeader("Content-Type", "text/plain");
+        return res.status(200).send(finalScript);
+
+    } catch (error) {
+        console.error("API Error:", error);
+        return res.status(500).send("Internal Server Error");
     }
 }
