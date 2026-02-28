@@ -53,14 +53,14 @@ export default function handler(req, res) {
         </head>
         <body>
             <h1>WARNING...</h1>
-            <p>Hello Skidder, I wanted to fully say that the script is obfuscated by LURAPH so even if you tried, you won't get the full raw code. also join discord.gg/fluxusz for updates 😁</p>
+            <p>Hello Skidder, I wanted to fully say that the script is obfuscated by LURAPH so even if you tried, you won't get the full raw code. also join discord.gg/fluxusz for updates.</p>
             <div class="error-code">700</div>
         </body>
         </html>
         `;
 
         if (hosted !== "bee54fbc56a2a65809c4519b3816cff770e45d072d4dd53e1675f865beb9f6d7") {
-            return res.status(403).send("malformed link or file api changed err. 200");
+            return res.status(403).send("malformed link or file api changed error 200, report this error to discord.gg/fluxusz");
         }
         
         if (!isRoblox) {
