@@ -14,7 +14,7 @@ export default function handler(req, res) {
         if (isBrowser) {
             // Return a decoy script or a denial message.
             res.setHeader("Content-Type", "text/plain");
-            return res.status(200).send(`print("Nice try! Please execute this directly in the application.")`);
+            return res.status(200).send(`I wanna say for you all skidders, that this code is obfuscated by LURAPH!! yes. luraph so dont even try to deobfuscate, i knoy you guys aint doing shit.`);
         }
 
         // 3. Serve the Real (Obfuscated) Script
