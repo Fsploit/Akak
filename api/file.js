@@ -13,7 +13,7 @@ export default function handler(req, res) {
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Error 700</title>
+            <title>Astralise virtual file</title>
             <style>
                 body {
                     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -62,7 +62,7 @@ export default function handler(req, res) {
 
         // 1. Key Authentication
         if (hosted !== "bee54fbc56a2a65809c4519b3816cff770e45d072d4dd53e1675f865beb9f6d7") {
-            return res.status(403).send("Invalid Key.");
+            return res.status(403).send("malformed link or file api changed err. 200");
         }
 
         // 2. The "Hide" Logic
