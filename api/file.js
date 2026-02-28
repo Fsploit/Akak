@@ -52,8 +52,13 @@ export default function handler(req, res) {
             </style>
         </head>
         <body>
-            <h1>WARNING...</h1>
-            <p>Hello Skidder, I wanted to fully say that the script is obfuscated by LURAPH so even if you tried, you won't get the full raw code. also join discord.gg/fluxusz for updates.</p>
+            <h1>FSPLOIT SEE'S YOU</h1>
+            <p>
+            Hello Skidder, I wanted to fully say that the script is obfuscated by LURAPH so even if you tried, you won't get the full raw code. also join discord.gg/fluxusz for updates.
+            
+            this file protector is powered by POLSEC.
+            
+            </p>
             <div class="error-code">700</div>
         </body>
         </html>
